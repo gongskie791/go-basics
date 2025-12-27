@@ -1,0 +1,21 @@
+{{template "header" .}}
+
+<div>
+    <p>huhu</p>
+    <form action="/add" method="post">
+        <input type="text" name="username" placeholder="Enter your username" required>
+        <input type="password" name="password" placeholder="Enter your password" required>
+        <button type="submit">Add</button>
+    </form>
+
+    {{range .Account}}
+    <div>
+        <span>Username: {{ .Username}}</span>
+        <span>Password: {{ .Password}}</span>
+    </div>
+    {{else}}
+    <span>No User Yet</span>
+    {{end}}
+</div>
+
+{{template "footer" .}}
