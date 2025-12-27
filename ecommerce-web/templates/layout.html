@@ -1,0 +1,39 @@
+{{define "header"}}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{.Title}} - E-Commerce</title>
+    <link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-brand">
+            <a href="/">🛒 E-Commerce</a>
+        </div>
+        <div class="nav-links">
+            <a href="/">Products</a>
+            <a href="/products/new">Add Product</a>
+            <a href="/cart">Cart ({{.CartCount}})</a>
+        </div>
+    </nav>
+
+    <main class="container">
+        {{if .Message}}
+        <div class="alert alert-success">{{.Message}}</div>
+        {{end}}
+
+        {{if .Error}}
+        <div class="alert alert-error">{{.Error}}</div>
+        {{end}}
+{{end}}
+
+{{define "footer"}}
+    </main>
+    <footer class="footer">
+        <p>E-Commerce Demo - Built with Go</p>
+    </footer>
+</body>
+</html>
+{{end}}

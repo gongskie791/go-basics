@@ -1,0 +1,34 @@
+{{template "header" .}}
+
+<h1>Add New Product</h1>
+
+<div class="form-container">
+    <form action="/products" method="POST" class="product-form">
+        <div class="form-group">
+            <label for="name">Product Name</label>
+            <input type="text" id="name" name="name" required placeholder="Enter product name">
+        </div>
+
+        <div class="form-group">
+            <label for="description">Description</label>
+            <textarea id="description" name="description" rows="3" placeholder="Enter product description"></textarea>
+        </div>
+
+        <div class="form-group">
+            <label for="price">Price ($)</label>
+            <input type="number" id="price" name="price" step="0.01" min="0" required placeholder="0.00">
+        </div>
+
+        <div class="form-group">
+            <label for="stock">Stock Quantity</label>
+            <input type="number" id="stock" name="stock" min="0" required placeholder="0">
+        </div>
+
+        <div class="form-actions">
+            <a href="/" class="btn btn-secondary">Cancel</a>
+            <button type="submit" class="btn btn-primary">Add Product</button>
+        </div>
+    </form>
+</div>
+
+{{template "footer" .}}
