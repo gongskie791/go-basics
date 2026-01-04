@@ -40,14 +40,14 @@ func NewHandler(ps *services.ProductService, cs *services.CartService) *Handler 
 
 // PageData is passed to templates (like what you printed in console)
 type PageData struct {
-	Title      string
-	Products   []models.Product
-	Cart       models.Cart
-	CartItems  []models.Product
-	CartTotal  float64
-	CartCount  int
-	Message    string
-	Error      string
+	Title     string
+	Products  []models.Product
+	Cart      models.Cart
+	CartItems []models.Product
+	CartTotal float64
+	CartCount int
+	Message   string
+	Error     string
 }
 
 // Home displays all products (replaces case "1": displayProducts)

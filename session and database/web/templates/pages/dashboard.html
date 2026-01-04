@@ -1,0 +1,12 @@
+{{define "content"}}
+<div class="dashboard">
+    <h1>{{.Title}}</h1>
+    {{if .User}}
+    <p>Hello, {{.User.Username}}!</p>
+    {{end}}
+    
+    <div class="stats">
+        <p>You have {{.Stats.Posts}} posts</p>
+    </div>
+</div>
+{{end}}

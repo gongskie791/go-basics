@@ -1,0 +1,15 @@
+{{define "header"}}
+<header>
+    <nav>
+        <a href="/">Home</a>
+        <a href="/dashboard">Dashboard</a>
+        <a href="/about">About</a>
+        {{if .User}}
+            <a href="/logout">Logout</a>
+        {{else}}
+            <a href="/login">Login</a>
+            <a href="/register">Register</a>
+        {{end}}
+    </nav>
+</header>
+{{end}}

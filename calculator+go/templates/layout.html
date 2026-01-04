@@ -11,9 +11,9 @@
     <nav >
         <h2>Users counts ({{.Count}})</h2>
         <div>
-            <a href="#">Anchor 1</a>
-            <a href="#">Anchor 2</a>
-            <a href="#">Anchor 3</a>
+            <a href="/" class="{{if eq .ActivePage "home"}}active{{end}}">Home</a>
+            <a href="/add/account" class="{{if eq .ActivePage "add"}}active{{end}}">Add User</a>
+            <a href="#" class="{{if eq .ActivePage "about"}}active{{end}}">About</a>
         </div>
     </nav>
 

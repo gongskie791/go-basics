@@ -6,6 +6,7 @@ import (
 	"log"
 	"net/http"
 	"slices"
+	"strings"
 )
 
 type Account struct {
@@ -35,18 +36,20 @@ func main() {
 	nextID++
 
 	mux.HandleFunc("/", homeHandler)
-	mux.HandleFunc("/add", addHandler)
+	mux.HandleFunc("/account/new", addHandler)
 	log.Println("Server starting on http://localhost:8080")
 	log.Fatal(http.ListenAndServe(":8080", mux))
 }
 
 func homeHandler(w http.ResponseWriter, r *http.Request) {
 	data := struct {
-		Account []Account
-		Count   int
+		Account    []Account
+		Count      int
+		ActivePage string // Add this
 	}{
-		Account: account,
-		Count:   len(account),
+		Account:    account,
+		Count:      len(account),
+		ActivePage: "home", // Set active page
 	}
 
 	templates.ExecuteTemplate(w, "home.html", data)
@@ -57,8 +60,8 @@ func addHandler(w http.ResponseWriter, r *http.Request) {
 		http.Redirect(w, r, "/", http.StatusSeeOther)
 	}
 
-	username := r.FormValue("username")
-	password := r.FormValue("password")
+	username := template.HTMLEscapeString(r.FormValue("username"))
+	password := template.HTMLEscapeString(r.FormValue("password"))
 
 	exists := slices.ContainsFunc(account, func(a Account) bool {
 		return a.Username == username
@@ -70,11 +73,8 @@ func addHandler(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	if username == "" {
-		fmt.Print("Username is empty")
-	}
-	if password == "" {
-		fmt.Print("Password is empty")
+	if strings.TrimSpace(username) == "" || strings.TrimSpace(password) == "" {
+		fmt.Print("username and password are required")
 	}
 
 	newAccount := Account{
